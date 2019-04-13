@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+
+# BUILD IMAGE
+docker build \
+      -t $REGISTRY_URL/$REGISTRY_IMAGE:$REGISTRY_IMAGE_TAG \
+      -t $REGISTRY_URL/$REGISTRY_IMAGE:latest \
+      .
+# PUSH IMAGE
+docker login -u $REGISTRY_ACCESS -p $REGISTRY_SECRET $REGISTRY_URL
+docker push $REGISTRY_URL/$REGISTRY_IMAGE:$REGISTRY_IMAGE_TAG
+docker push $REGISTRY_URL/$REGISTRY_IMAGE:latest
